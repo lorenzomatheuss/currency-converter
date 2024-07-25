@@ -1,4 +1,3 @@
-require('dotenv').config();
 document.addEventListener('DOMContentLoaded', function() {
     const amountInput = document.getElementById('amount');
     const fromCurrencySelect = document.getElementById('fromCurrency');
@@ -7,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const convertButton = document.getElementById('convertButton');
     const clearButton = document.getElementById('clearButton');
 
-    const apiKey = process.env.API_KEY;
+    const apiKey = 'ea3a18168d66d94e0cde3e3b';
     const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
 
     // Fetch currency data and populate selects
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Convert currency
     convertButton.addEventListener('click', () => {
-        const amount = parseFloat(amountInput.value.replace(/\./g, '').replace(/,/g, '.')); // Remove os separadores de milhar e substitui vírgulas por pontos
+        const amount = parseFloat(amountInput.value.replace(/\./g, '').replace(/,/g, '.')); // Removes thousands separators and replaces commas with periods
         const fromCurrency = fromCurrencySelect.value;
         const toCurrency = toCurrencySelect.value;
 
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Format the amount input with dots as thousand separators
     amountInput.addEventListener('input', function() {
-        let value = amountInput.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        let value = amountInput.value.replace(/\D/g, ''); // Removes all non-numeric characters
         if (value.length > 0) {
             value = parseInt(value).toLocaleString('pt-BR');
             amountInput.value = value;
